@@ -1,17 +1,28 @@
 # Home page file for team Colorado
 # Implemented via python
 from Error import Error
-from CreateAccount import CreateAccount 
-from Login import Login
-from JobBoard import JobBoard
-from SkillsPage import Skills
-from UsersPage import Users
+from User_Files.UserSettings import Settings
+from User_Files.User import User
+from User_Files.UserManager import UserManager
+from Job_Files.Job import Job
+from Job_Files.JobManager import JobManager
 import ImportantLinks
+import SkillsPage
+import JobsPage
 import re
-# boolean to determine if logged in
+
+# empy boolean representing no logged in user
+# when logged in, value will be the logged-in User() object
 loggedIn = False
 
-# string to int
+# manager objects to perform object operations
+userManager = UserManager()
+jobManager = JobManager()
+
+for setting in userManager.settingsList:
+    print(setting.getUsername())
+
+# main() loop
 while True:
 
     # block of code for user who is not logged in
@@ -42,7 +53,7 @@ while True:
         print("\n              Home Page               ")
         print("Please select one of the following options")
         print("""
-            1. Log-Out (logged in as """ + loggedIn + """)
+            1. Log-Out (logged in as """ + loggedIn.getFirstName() + ' ' + loggedIn.getLastName() + """)
             2. Create an account
             3. Search for a job
             4. Find someone you know
@@ -61,97 +72,44 @@ while True:
         #######################################
         ###     OPTION 1: Log-In option     ###
         #######################################
-        if newOption == 1:
-            # Call the Log-In page function
-            loggedIn = Login().getLoginInput(loggedIn)
+        if newOption == 1 and loggedIn:
+            # Call the Log-In user function
+            loggedIn = userManager.logOut()
+        elif newOption == 1 and not loggedIn:
+            # Call the log-out user function
+            loggedIn = userManager.logIn()
 
 
         ###################################################
         ###     OPTION 2: Create an account option      ###
         ###################################################
         elif newOption == 2:
-            # helper functions to get user input for parameters
-            # username 
-            def setUsername():
-                name = input("Provide the username for the new account: ")
-                return name
-            # first name
-            def setFirstName():
-                name = input("Provide your first name: ")
-                return name
-            # last name
-            def setLastName():
-                name = input("Provide your last name: ")
-                return name
-            # password
-            def setPassword():
-                while True:
-                    password = input("Provide password of the new account: ")
-                    if (len(password) < 8 and len(password) > 12):
-                        print("Your password should be between 8 and 12 characters")
-                        continue
-                    elif not re.search("[a-z]", password):
-                        print("Your password should have a lower case letter")
-                        continue
-                    elif not re.search("[A-Z]", password):
-                        print("Your password should have an upper case letter")
-                        continue
-                    elif not re.search("[0-9]", password):
-                        print("Your password should have an integer")
-                        continue
-                    elif not re.search("[!-/]", password):
-                        print("Your password should have a special character")
-                        continue
-                    elif re.search("\s", password):
-                        print("Your password contains a forbidden character")
-                        continue
-                    else:
-                        print("Valid Password")
-                        return password
-            # call functions to retrieve parameters
-            username = setUsername()
-            firstName = setFirstName()
-            lastName = setLastName()
-            password = setPassword()
-            # instantiate CreateAccount object 
-            x = CreateAccount()
-            # call addAccount function to write into users.csv
-            x.addAcc(username, firstName, lastName, password)
+            # Call the create account user function
+            userManager.createAccount()
 
 
         #################################################
         ###     OPTION 3: Search for a job option     ###
         #################################################
         elif newOption == 3:
-            # Call the JobBoard.py jobSelect function
-            x = JobBoard()
-            x.jobSelect(loggedIn)
+            # Call the JobsPage.py menu function
+            JobsPage.jobMenu(loggedIn, jobManager)            
 
 
         #######################################################
         ###     OPTION 4: Find someone you know option      ###
         #######################################################
         elif newOption == 4:
-            def getFirstName():
-                firstName = input("Please enter the FIRST NAME of the user you would like to search for: ")
-                return firstName
-
-            def getLastName():
-                lastName = input("Please enter the LAST NAME of the user you would like to search for: ")
-                return lastName
-
-            print("     Search-A-User Page      \n")
-            x = Users()
-            x.userSearch(getFirstName(), getLastName())
+            # call the user search user function
+            userManager.userSearch()
 
 
         ###################################################
         ###     OPTION 5: Learn a new skill option      ###
         ###################################################
         elif newOption == 5:
-            # Call the SkillsPage.py skillSelect function
-            x = Skills()
-            x.skillSelect()
+            # Call the SkillsPage.py main menu function
+            SkillsPage.skillsMenu()
 
 
         #############################################
@@ -166,7 +124,7 @@ while True:
         ###     OPTION 7: InCollege Important Links option     ###
         ##########################################################
         elif newOption == 7:
-            ImportantLinks.importantLinks()
+            ImportantLinks.importantLinksMenu(loggedIn)
 
 
         ##############################################
@@ -174,7 +132,11 @@ while True:
         ##############################################
         elif newOption == 8:
             # exit program
+            userManager.close()
+            jobManager.close()
+            print("Program closing.")
             exit()
+
 
         #############################################
         ###     OPTION 9: Play video option       ###
