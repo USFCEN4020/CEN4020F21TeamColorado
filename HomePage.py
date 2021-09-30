@@ -7,6 +7,7 @@ from User_Files.UserManager import UserManager
 from Job_Files.Job import Job
 from Job_Files.JobManager import JobManager
 import ImportantLinks
+import UsefulLinks
 import SkillsPage
 import JobsPage
 import re
@@ -116,8 +117,7 @@ while True:
         ###     OPTION 6: Useful Links option     ###
         #############################################
         elif newOption == 6:
-            x = Error()
-            x.underConstruction()
+            UsefulLinks.usefulLinks(loggedIn)
 
 
         ##########################################################
@@ -125,7 +125,6 @@ while True:
         ##########################################################
         elif newOption == 7:
             ImportantLinks.importantLinksMenu(loggedIn)
-
 
         ##############################################
         ###     OPTION 8: Exit program option      ###
