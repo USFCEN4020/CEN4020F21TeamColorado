@@ -9,6 +9,7 @@ class User:
         self.firstName = firstName
         self.lastName = lastName
         self.settings = Settings(username)
+        self.profile = Profile(username)
 
     def setUsername(self, username):
         self.username = username
@@ -34,3 +35,8 @@ class User:
         self.settings = settings
     def getSettings(self):
         return self.settings
+
+    def setProfile(self, profile):
+        self.profile = profile
+    def getProfile(self):
+        return self.profile
