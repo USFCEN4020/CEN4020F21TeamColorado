@@ -2,6 +2,8 @@ from User_Files.User import User
 from User_Files.UserIO import UserIO
 from User_Files.UserSettings import Settings
 from User_Files.UserSettingsIO import UserSettingsIO
+from User_Files.UserProfiles import Profile
+from User_Files.UserProfiles import UserProfilesIO
 import re
 
 # class to deal with User object functions and store User list
@@ -10,10 +12,13 @@ class UserManager:
 
     filename1 = "User_Files/users.csv"
     filename2 = "User_Files/userSettings.csv"
+    filename3 = "User_Files/userProfiles.csv"
     userIO = UserIO()
     userSettingsIO = UserSettingsIO()
+    userProfilesIO = UserProfilesIO()
     userList = userIO.readUsers(filename1)
     userSettingsIO.readUserSettings(userList, filename2)
+    userProfilesIO.readUserProfile(userList, filename3)
     settingsList = list()
 
 

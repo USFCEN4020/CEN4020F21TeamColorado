@@ -2,12 +2,12 @@ import pandas as pd
 from User_Files.UserProfiles import Profile
 from User_Files.User import User
 
-class UserSettingsIO:
+class UserProfilesIO:
 
     # reads user settings from file and assigns them to corresponding user
     # input: userList = list of users from UserManager; string filename = name of file to read
     # returns: profileList = list containing the profile details for all User objects; False if file read error
-    def readUserSettings(self, userList, filename):
+    def readUserProfile(self, userList, filename):
         profileList = list()
         try:
             data = pd.read_csv(filename)

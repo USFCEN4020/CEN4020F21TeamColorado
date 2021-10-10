@@ -1,4 +1,5 @@
 from User_Files.UserSettings import Settings
+from User_Files.UserProfiles import Profile
 
 # class for creating a User object
 class User:

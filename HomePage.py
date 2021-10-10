@@ -10,6 +10,7 @@ import ImportantLinks
 import UsefulLinks
 import SkillsPage
 import JobsPage
+import ProfileMenu
 import re
 
 # empy boolean representing no logged in user
@@ -36,11 +37,12 @@ while True:
             3. Search for a job
             4. Find someone you know
             5. Learn a new skill
+            6. View profile
 
-            6. Useful Links
-            7. InCollege Important Links
+            9. Useful Links
+            8. InCollege Important Links
 
-            8. Exit
+            0. Exit
 
             Student success story:
             My name is John Shephard and I graduated from college with a BCS degree. I stumbled
@@ -59,11 +61,12 @@ while True:
             3. Search for a job
             4. Find someone you know
             5. Learn a new skill
+            6. View your profile
 
-            6. Useful Links
-            7. InCollege Important Links
+            7. Useful Links
+            8. InCollege Important Links
 
-            8. Exit
+            0. Exit
         """)
     try:
         newOption = int(input("Choice: "))
@@ -112,24 +115,33 @@ while True:
             # Call the SkillsPage.py main menu function
             SkillsPage.skillsMenu()
 
+        #############################################
+        ###     OPTION 6: Profile                 ###
+        #############################################
+        elif newOption == 6 and not loggedIn:
+            print("Have to be logged in to view profile")
+        elif newOption == 6 and loggedIn:
+            ProfileMenu.profileMenu(loggedIn)
+
+
 
         #############################################
-        ###     OPTION 6: Useful Links option     ###
+        ###     OPTION 7: Useful Links option     ###
         #############################################
-        elif newOption == 6:
+        elif newOption == 7:
             UsefulLinks.usefulLinks(loggedIn)
 
 
         ##########################################################
-        ###     OPTION 7: InCollege Important Links option     ###
+        ###     OPTION 8: InCollege Important Links option     ###
         ##########################################################
-        elif newOption == 7:
+        elif newOption == 8:
             ImportantLinks.importantLinksMenu(loggedIn)
 
         ##############################################
-        ###     OPTION 8: Exit program option      ###
+        ###     OPTION 0: Exit program option      ###
         ##############################################
-        elif newOption == 8:
+        elif newOption == 0:
             # exit program
             userManager.close()
             jobManager.close()
