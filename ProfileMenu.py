@@ -15,8 +15,9 @@ def profileMenu(loggedIn):
                     3. View About
                     4. View Experience
                     5. View Education
+                    6. View Friend List
 
-                    6. Edit Profile
+                    7. Edit Profile
 
                     0. Return Home
                 """)
@@ -38,8 +39,14 @@ def profileMenu(loggedIn):
             # Show Education
             elif newOption == 5:
                 print(education)
-            # Edit Profile
+            # Show FriendList
             elif newOption == 6:
+                temp = loggedIn.getFriends().getFriendList()
+                print("Your Friends are: ")
+                for friend in temp:
+                    print(friend)
+            # Edit Profile
+            elif newOption == 7:
                 editProfile(loggedIn)
 
             # Return Home

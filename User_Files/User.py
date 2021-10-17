@@ -1,5 +1,6 @@
 from User_Files.UserSettings import Settings
 from User_Files.UserProfiles import Profile
+from User_Files.UserFriends import Friends
 
 # class for creating a User object
 class User:
@@ -11,6 +12,7 @@ class User:
         self.lastName = lastName
         self.settings = Settings(username)
         self.profile = Profile(username)
+        self.friends = Friends(username)
 
     def setUsername(self, username):
         self.username = username
@@ -41,3 +43,8 @@ class User:
         self.profile = profile
     def getProfile(self):
         return self.profile
+
+    def setFriends(self, friends):
+        self.friends = friends
+    def getFriends(self):
+        return self.friends
