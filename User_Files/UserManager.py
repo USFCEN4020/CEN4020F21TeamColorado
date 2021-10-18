@@ -1,9 +1,9 @@
 from User_Files.User import User
 from User_Files.UserIO import UserIO
+from User_Files.UserProfiles import Profile
+from User_Files.UserProfilesIO import UserProfilesIO
 from User_Files.UserSettings import Settings
 from User_Files.UserSettingsIO import UserSettingsIO
-from User_Files.UserProfiles import Profile
-from User_Files.UserProfiles import UserProfilesIO
 import re
 
 # class to deal with User object functions and store User list
@@ -12,13 +12,16 @@ class UserManager:
 
     filename1 = "User_Files/users.csv"
     filename2 = "User_Files/userSettings.csv"
-    filename3 = "User_Files/userProfiles.csv"
+    #IO initialize
     userIO = UserIO()
+
+    #IO settings initialize
     userSettingsIO = UserSettingsIO()
-    userProfilesIO = UserProfilesIO()
+
     userList = userIO.readUsers(filename1)
+
+
     userSettingsIO.readUserSettings(userList, filename2)
-    userProfilesIO.readUserProfile(userList, filename3)
     settingsList = list()
 
 
@@ -26,7 +29,7 @@ class UserManager:
     # returns: newUser = newly created User object; False if the list of user accounts is already full
     def createAccount(self):
         # check to see if userList is at maximum amount of accounts
-        if len(self.userList) >= 6:
+        if len(self.userList) >= 10:
             print("The maximum amount of accounts has already been made!")
             return False
         # if room for more accounts, get user input and add account to list
@@ -74,22 +77,93 @@ class UserManager:
         print("     Search-A-User Page      \n")
         # get user input
         try:
-            firstName = str(input("Please enter the FIRST NAME of the user you would like to search for: "))
-            lastName = str(input("Please enter the LAST NAME of the user you would like to search for: "))
+            print("     Select the search option      \n")
+            print("     1. Search by Last Name        \n")
+            print("     2. Search by University       \n")
+            print("     3. Search by Major            \n")
+            newOption = int(input("Choice: "))
+
+
+            ##############################################
+            ###     OPTION 1: Search by Last Name      ###
+            ##############################################
+            if newOption == 1:
+                try:
+                    lastName = str(input("Please enter the LAST NAME of the user you would like to search for: "))
+                except ValueError:
+                    print("Error getting user input. Try again later.")
+                    return False
+                for user in self.userList:
+                    if lastName == user.getLastName():
+                        print("The user has been found")
+                        print("Would you like so send a friend request? Provide 1 to send or 2 to return")
+                        try:
+                            newOption = int(input("Choice: "))
+                            if newOption == 1:
+                                return False
+                            elif newOption == 2:
+                                return False
+                        except ValueError:
+                            print("You provided a non-integer character.")
+                    print("This person is not yet a part of the InCollege system.")
+                    print("Returning to home page...")
+                    return False
+            #################################################
+            ###     OPTION 2: Search by University        ###
+            #################################################
+            elif newOption == 2:
+                try:
+                    userUniversity = str(input("Please enter the University of the user you would like to search for: "))
+                except ValueError:
+                    print("Error getting user input. Try again later.")
+                    return False
+                for user in self.userList:
+                    if userUniversity == user.getProfile().getEducation():
+                        print("The user has been found")
+                        print("Would you like so send a friend request? Provide 1 to send or 2 to return")
+                        try:
+                            newOption = int(input("Choice: "))
+                            if newOption == 1:
+                                return False
+                            elif newOption == 2:
+                                return False
+                        except ValueError:
+                            print("You provided a non-integer character.")
+                print("This person is not yet a part of the InCollege system.")
+                print("Returning to home page...")
+                return False
+            #################################################
+            ###     OPTION 3: Search by Major             ###
+            #################################################
+            elif newOption == 3:
+                try:
+                    userMajor = str(
+                        input("Please enter the Major of the user you would like to search for: "))
+                except ValueError:
+                    print("Error getting user input. Try again later.")
+                    return False
+                for user in self.userList:
+                    if userMajor == user.getProfile().getMajor():
+                        print("The user has been found")
+                        print("Would you like so send a friend request? Provide 1 to send or 2 to return")
+                        try:
+                            newOption = int(input("Choice: "))
+                            if newOption == 1:
+                                return False
+                            elif newOption == 2:
+                                return False
+                        except ValueError:
+                            print("You provided a non-integer character.")
+                    print("This person is not yet a part of the InCollege system.")
+                    print("Returning to home page...")
+                    return False
+
         except ValueError:
-            print("Error getting user input. Try again later.")
-            return False
+            print("You provided a non-integer character.")
+
 
         # loop through list to find user
-        for user in self.userList:
-            if firstName == user.getFirstName() and lastName == user.getLastName():
-                print("This person is a part of the InCollege system.")
-                print("Returning to home page...")
-                return user
 
-        print("This person is not yet a part of the InCollege system.")
-        print("Returning to home page...")
-        return False
 
 
     # function to log the user in
@@ -112,8 +186,11 @@ class UserManager:
                         print("Login Successful! Returning to home page...")
                         return user
                     else:
-                        print("Incorrect username/password. Please try again.")
-                        continue
+                        tryagain = str(input("Incorrect username/password. Would you like to try again? (Y/N):"))
+                        if tryagain == 'Y' or tryagain == 'y':
+                            continue
+                        else:
+                            return False
             except TypeError:
                 print("There are currently no users loaded in the system.")
                 return False
