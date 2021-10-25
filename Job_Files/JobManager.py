@@ -15,7 +15,7 @@ class JobManager:
     # returns: job = Job() object that was created; False if jobsList already full
     def createJobListing(self, user):
         # check to see if max amount of jobs posted
-        if len(JobManager.jobList) >= 5:
+        if len(JobManager.jobList) >= 10:
             print("Maximum amount of jobs listings has already been posted. Please come back later!")
             return False
         else:
@@ -32,7 +32,16 @@ class JobManager:
             job = Job(title, desc, employer, location, salary, created_by)
             JobManager.jobList.append(job)
             return job
-    
+    def deleteJobListing(self, user):
+
+        if len(JobManager.jobList) <= 0:
+            return False
+        else:
+            Title = str(input("Job's Title you want to remove: "))
+            JobIO.deleteJobs(Title, "Job_Files/jobs.csv")
+
+            return True
+
     def applyForJob(self, user):
         chooseJob = int(input("Please choose the job you would like to apply by index\ne.g. for Job 1 choose 1\n(Type 555, if you would like to see available jobs)\n"))
         # option to see available jobs

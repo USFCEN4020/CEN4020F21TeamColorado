@@ -25,6 +25,25 @@ class JobIO:
             print("There was a problem reading '" + filename + "'.")
             return False
 
+    #delete job by title
+    def deleteJobs(self, title, filename):
+        try:
+            dictionary = {
+                "Title",
+                "Description",
+                "Employer",
+                "Location",
+                "Salary",
+                "created_by"
+            }
+            data = pd.DataFrame(dictionary)
+            data = data.drop(title)
+            data.to_csv(filename, index=False)
+            return True
+        except OSError:
+            print("There was a problem writing to '" + filename + "'.")
+            return False
+
     def readJobApplications(self, filename):
         jobAppList = list()
         try:
