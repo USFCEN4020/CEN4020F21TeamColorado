@@ -63,12 +63,15 @@ class UserManager:
             lastName = str(input("Provide your last name: "))
 
             newUser = User(username, password, firstName, lastName)
-            self.userList.append(newUser)
-            self.userSettingsIO.writeUserSettings(newUser.getSettings(), self.filename2)
-            self.settingsList.append(newUser.getSettings())
+            try:
+                self.userList.append(newUser)
+                self.userSettingsIO.writeUserSettings(newUser.getSettings(), self.filename2)
+                self.settingsList.append(newUser.getSettings())
 
-            print("Account successfully created. Returning home...\n")
-            return newUser
+                print("Account successfully created. Returning home...\n")
+                return newUser
+            except:
+                print("(⚠️ Exception occurred when creating account...)")
 
     
     # function to search for an existing InCollege user

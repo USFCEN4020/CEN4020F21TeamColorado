@@ -84,15 +84,19 @@ while True:
         elif newOption == 1 and not loggedIn:
             # Call the log-out user function
             loggedIn = userManager.logIn()
-            frIO = FriendRequestIO()
-            frRequests = list()
-            frRequests = frIO.readFriendRequests(loggedIn.getUsername(), "friendRequests.csv")
-            if(len(frRequests) > 0):
-                request = frRequests.pop()
-                print("You have friend request from " + request.getFrom() ".")
-                accept = input("Accept?(y/n): ")
-                if (accept == 'y'):
-                    request.acceptFriend(loggedIn)
+            try:
+                frIO = FriendRequestIO()
+                frRequests = list()
+                frRequests = frIO.readFriendRequests(loggedIn.getUsername(), "friendRequests.csv")
+                if(len(frRequests) > 0):
+                    request = frRequests.pop()
+                    print("You have friend request from " + request.getFrom() + ".")
+                    accept = input("Accept?(y/n): ")
+                    if (accept == 'y'):
+                        request.acceptFriend(loggedIn)
+            except:
+                print("(⚠️ Exception occurred when loading friend requests...)")
+
 
 
         ###################################################

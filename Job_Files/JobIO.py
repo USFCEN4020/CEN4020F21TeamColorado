@@ -1,5 +1,6 @@
 import pandas as pd
 from Job_Files.Job import Job
+from Job_Files.JobApplicant import JobApplicant
 
 class JobIO:
 
@@ -24,6 +25,19 @@ class JobIO:
             print("There was a problem reading '" + filename + "'.")
             return False
 
+    def readJobApplications(self, filename):
+        jobAppList = list()
+        try:
+            data = pd.read_csv(filename)
+            for index, row in data.iterrows():
+                job = JobApplicant(
+                    row["Title"],  
+                    row["Applicant"])
+                jobAppList.append(job)
+            return jobAppList
+        except OSError:
+            print("There was a problem reading '" + filename + "'.")
+            return False
 
     # writes list of jobs to file
     # input: jobList = list of Job() objects; string filename = name of file to write to

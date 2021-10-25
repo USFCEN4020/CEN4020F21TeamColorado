@@ -12,23 +12,36 @@ def jobMenu(loggedIn, jobManager):
         print("""
         1. Find a job listing
         2. Create a job listing (must be logged in)
-        
-        3. Back to home page
+        3. Apply for a job (must be logged in)
+        4. See applied jobs (must be logged in)
+        5. Back to home page
         """)
         try:
             newOption = int(input("Choice: "))
             print('\n')
             # Find a job listing option
             if newOption == 1:
-                Error.underConstruction()
+                jobManager.seeJobs(loggedIn)
             # Create a job listing option
             elif newOption == 2 and loggedIn:
                 jobManager.createJobListing(loggedIn)
             # Deny job creation if not logged in
             elif newOption == 2 and not loggedIn:
                 print("You must be logged in to post a job listing!\n")
-            # Back to home page option
-            elif newOption == 3:
+            # Job application option
+            elif newOption == 3 and loggedIn:
+                jobManager.applyForJob(loggedIn)
+            # Deny job creation if not logged in
+            elif newOption == 3 and not loggedIn:
+                print("You must be logged in to apply for a job!\n")
+            # See applied jobs option
+            elif newOption == 4 and loggedIn:
+                jobManager.seeAppliedJobs(loggedIn)
+            # Deny job creation if not logged in
+            elif newOption == 4 and not loggedIn:
+                print("You must be logged in to see your applied jobs!\n")
+            # Go back to home page option
+            elif newOption == 5:
                 print("Returning to home page...")
                 break
         except ValueError:
