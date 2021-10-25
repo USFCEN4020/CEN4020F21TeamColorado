@@ -14,7 +14,8 @@ def jobMenu(loggedIn, jobManager):
         2. Create a job listing (must be logged in)
         3. Apply for a job (must be logged in)
         4. See applied jobs (must be logged in)
-        5. Back to home page
+        5. Delete job by title
+        6. Return
         """)
         try:
             newOption = int(input("Choice: "))
@@ -41,8 +42,12 @@ def jobMenu(loggedIn, jobManager):
             elif newOption == 4 and not loggedIn:
                 print("You must be logged in to see your applied jobs!\n")
             # Go back to home page option
-            elif newOption == 5:
-                print("Returning to home page...")
+            elif newOption == 5 and loggedIn:
+                jobManager.deleteJobListing(loggedIn)
+            elif newOption == 5 and not loggedIn:
+                print("You must be logged in to see your applied jobs!\n")
+            elif newOption == 6:
+                print("Returning...")
                 break
         except ValueError:
             print("You provided a non-integer character.")
