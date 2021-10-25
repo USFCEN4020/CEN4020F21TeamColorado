@@ -1,6 +1,7 @@
 from User_Files.User import User
 from User_Files.UserIO import UserIO
-from FriendRequest import FriendRequest
+from User_Files.UserProfiles import Profile
+from User_Files.UserProfilesIO import UserProfilesIO
 from User_Files.UserSettings import Settings
 from User_Files.UserSettingsIO import UserSettingsIO
 import re
@@ -62,12 +63,15 @@ class UserManager:
             lastName = str(input("Provide your last name: "))
 
             newUser = User(username, password, firstName, lastName)
-            self.userList.append(newUser)
-            self.userSettingsIO.writeUserSettings(newUser.getSettings(), self.filename2)
-            self.settingsList.append(newUser.getSettings())
+            try:
+                self.userList.append(newUser)
+                self.userSettingsIO.writeUserSettings(newUser.getSettings(), self.filename2)
+                self.settingsList.append(newUser.getSettings())
 
-            print("Account successfully created. Returning home...\n")
-            return newUser
+                print("Account successfully created. Returning home...\n")
+                return newUser
+            except:
+                print("(⚠️ Exception occurred when creating account...)")
 
     
     # function to search for an existing InCollege user
@@ -99,8 +103,7 @@ class UserManager:
                         try:
                             newOption = int(input("Choice: "))
                             if newOption == 1:
-                                loggedIn.setFriends(user)
-                                return True
+                                return False
                             elif newOption == 2:
                                 return False
                         except ValueError:
