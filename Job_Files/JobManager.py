@@ -11,6 +11,7 @@ class JobManager:
     jobList = jobIO.readJobs(filename)
     jobApplicationList = jobIO.readJobApplications(filename1)
 
+
     # creates a job listing 
     # returns: job = Job() object that was created; False if jobsList already full
     def createJobListing(self, user):
@@ -32,14 +33,17 @@ class JobManager:
             job = Job(title, desc, employer, location, salary, created_by)
             JobManager.jobList.append(job)
             return job
+
     def deleteJobListing(self, user):
 
-        if len(JobManager.jobList) <= 0:
+        if len(JobManager.jobList) <= 1:
+            print("Nothing to be deleted")
             return False
         else:
-            Title = str(input("Job's Title you want to remove: "))
-            JobIO.deleteJobs(Title, "Job_Files/jobs.csv")
-
+            JobManager.seeJobs(self,user)
+            index = int(input("Job's index you want to remove: "))
+            JobIO.deleteJobs(self, index-1, "Job_Files/jobs.csv")
+            self.jobList = JobIO.readJobs(self,"Job_Files/jobs.csv")
             return True
 
     def applyForJob(self, user):
@@ -96,7 +100,8 @@ class JobManager:
             print("Employer: ", job.getEmployer())
             print("Location: ", job.getLocation())
             print("Salary: ", job.getSalary())
-            print("Created by: ", job.getCreatedBy())
+            print("Created by: ", job.getCreatedBy(), '\n')
+            return len(self.jobList)
 
     # option to retrieve applied jobs for specific user
     def seeAppliedJobs(self, user):
@@ -105,6 +110,14 @@ class JobManager:
             if(job.getApplicant() == user.getUsername()):
                 print("Job ", (self.jobApplicationList.index(job) + 1), '\n')
                 print("Title: ", job.getTitle())
+
+    # notification that the applied job was deleted
+    def noteJobDeleted(self,user):
+        for job in self.jobApplicationList:
+            for job in self.jobList:
+                if (job.getCreatedBy() == user.getUsername()):
+                    return True
+        return False
 
     # close function to write Job data to file before program terminates
     # NO RETURN VALUE
