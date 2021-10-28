@@ -1,9 +1,11 @@
 # Home page file for team Colorado
 # Implemented via python
 from Error import Error
-from User_Files.UserSettings import Settings
+from User_Files.Settings.UserSettings import Settings
 from User_Files.User import User
 from User_Files.UserManager import UserManager
+from User_Files.Friends.FriendRequest import FriendRequest
+from User_Files.Friends.FriendRequestIO import FriendRequestIO
 from Job_Files.Job import Job
 from Job_Files.JobManager import JobManager
 import ImportantLinks
@@ -11,8 +13,6 @@ import UsefulLinks
 import SkillsPage
 import JobsPage
 import ProfileMenu
-from FriendRequestIO import FriendRequestIO
-import FriendRequest
 import re
 
 # empy boolean representing no logged in user

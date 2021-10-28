@@ -1,6 +1,6 @@
 import pandas as pd
 from Job_Files.Job import Job
-from Job_Files.JobApplicant import JobApplicant
+from Applications.JobApplicant import JobApplicant
 
 class JobIO:
 

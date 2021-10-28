@@ -1,10 +1,11 @@
 from User_Files.User import User
 from User_Files.UserIO import UserIO
-from User_Files.UserProfiles import Profile
-from User_Files.UserProfilesIO import UserProfilesIO
-from User_Files.UserSettings import Settings
-from User_Files.UserSettingsIO import UserSettingsIO
-from FriendRequest import FriendRequest
+from Profiles.UserProfiles import Profile
+from Profiles.UserProfilesIO import UserProfilesIO
+from Settings.UserSettings import Settings
+from Settings.UserSettingsIO import UserSettingsIO
+from Friends.FriendRequest import FriendRequest
+from Messages.Message import Message
 import re
 
 # class to deal with User object functions and store User list
@@ -86,7 +87,7 @@ class UserManager:
     
     # function to search for an existing InCollege user
     # returns: user = User() object for user being searched for; False if user does not exist or error
-    def userSearch(self,user):
+    def userSearch(self, user):
         print("     Search-A-User Page      \n")
         # get user input
         try:
@@ -216,6 +217,24 @@ class UserManager:
         print("You have successfully been logged out of your account.")
         print("Returning to home page...")
         return False
+
+    
+    # function to create a message
+    # input: loggedIn: User() object containing the current logged-in user
+    # input: recipient: User() object containing the user who is recieving the message
+    # returns: message: Message() object that was created; False: the users are not friends and the current user is not a Plus member
+    def createMessage(self, loggedIn, recipient):
+        # check that the two users are friends and/or the current user is a Plus member
+        if (recipient.getUsername() not in loggedIn.getFriends().getFriendList()) and (loggedIn.getStatus() != "Plus"):
+            print("I'm sorry, you are not friends with that person.\n")
+            return False
+        
+        title = str(input("Enter the title of your message:\n"))
+        body = str(input("Write your message below:\n"))
+        message = Message(loggedIn.getUsername(), recipient.getUsername(), title, body)
+
+        return message
+    # TODO: Send created message to a user
 
 
     # close function to write User data to file before program terminates

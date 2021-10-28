@@ -10,7 +10,7 @@ class JobApplicant:
     def getTitle(self):
         return self.title
 
-    def setApplicant(self, desc):
+    def setApplicant(self, applicant):
         self.applicant = applicant
     def getApplicant(self):
         return self.applicant

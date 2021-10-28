@@ -1,5 +1,5 @@
 
-class Friends:
+class FriendList:
     def __init__(self, username, friend1 = '' ,friend2 = '', friend3 = '',friend4 = '', friend5 = '', friend6 = '', friend7 = '', friend8 = '', friend9 = ''):
         self.username = username
         self.friend1 = friend1

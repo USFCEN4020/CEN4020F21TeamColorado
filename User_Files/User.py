@@ -1,6 +1,6 @@
-from User_Files.UserSettings import Settings
-from User_Files.UserProfiles import Profile
-from User_Files.UserFriends import Friends
+from Settings.UserSettings import Settings
+from Profiles.UserProfiles import Profile
+from Friends.FriendList import FriendList
 
 # class for creating a User object
 class User:
@@ -13,7 +13,7 @@ class User:
         self.status = status
         self.settings = Settings(username)
         self.profile = Profile(username)
-        self.friends = Friends(username)
+        self.friends = FriendList(username)
 
     inbox = []      # List to hold inbox messages
 

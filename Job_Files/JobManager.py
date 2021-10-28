@@ -120,6 +120,15 @@ class JobManager:
                 print("Title: ", job.getTitle())
 
 
+    # notification that the applied job was deleted
+    def noteJobDeleted(self,user):
+        for job in self.jobApplicationList:
+            for job in self.jobList:
+                if (job.getCreatedBy() == user.getUsername()):
+                    return True
+        return False
+
+        
     # close function to write Job data to file before program terminates
     # NO RETURN VALUE
     def close(self):

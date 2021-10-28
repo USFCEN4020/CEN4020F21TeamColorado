@@ -1,5 +1,5 @@
 import pandas as pd
-from User_Files.UserProfiles import Profile
+from UserProfiles import Profile
 from User_Files.User import User
 
 class UserProfilesIO:

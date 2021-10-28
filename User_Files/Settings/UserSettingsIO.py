@@ -1,5 +1,5 @@
 import pandas as pd
-from User_Files.UserSettings import Settings
+from UserSettings import Settings
 from User_Files.User import User
 
 class UserSettingsIO:
