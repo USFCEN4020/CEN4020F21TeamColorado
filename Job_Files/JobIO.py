@@ -25,21 +25,13 @@ class JobIO:
             print("There was a problem reading '" + filename + "'.")
             return False
 
-    #delete job by title
-    def deleteJobs(self, title, filename):
+    #delete job by index
+    def deleteJobs(self, index, filename):
         try:
-            dictionary = {
-                "Title",
-                "Description",
-                "Employer",
-                "Location",
-                "Salary",
-                "created_by"
-            }
-            data = pd.DataFrame(dictionary)
-            data = data.drop(title)
-            data.to_csv(filename, index=False)
-            return True
+            data = pd.read_csv(filename)
+            data_with_index = data.drop(data.index[index])
+            jobList = data_with_index.to_csv(filename, index=False)
+            return jobList
         except OSError:
             print("There was a problem writing to '" + filename + "'.")
             return False

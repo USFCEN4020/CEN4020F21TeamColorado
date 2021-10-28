@@ -6,7 +6,13 @@ import Job_Files.JobManager
 # main function
 # input: loggedIn = string containing logged-in user's name, or False if empty (nobody logged in)
 def jobMenu(loggedIn, jobManager):
+
     while True:
+        if jobManager.noteJobDeleted(loggedIn):
+            print("")
+        else:
+            print("Notification - Applied job was deleted\n")
+
         print("             Job Board             ")
         print("Please select one of the following options")
         print("""
@@ -18,6 +24,7 @@ def jobMenu(loggedIn, jobManager):
         6. Return
         """)
         try:
+
             newOption = int(input("Choice: "))
             print('\n')
             # Find a job listing option

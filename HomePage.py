@@ -120,7 +120,7 @@ while True:
         #######################################################
         elif newOption == 4:
             # call the user search user function
-            userManager.userSearch()
+            userManager.userSearch(loggedIn)
 
 
         ###################################################

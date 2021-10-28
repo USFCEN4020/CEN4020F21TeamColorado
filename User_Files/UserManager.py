@@ -4,6 +4,7 @@ from User_Files.UserProfiles import Profile
 from User_Files.UserProfilesIO import UserProfilesIO
 from User_Files.UserSettings import Settings
 from User_Files.UserSettingsIO import UserSettingsIO
+from FriendRequest import FriendRequest
 import re
 
 # class to deal with User object functions and store User list
@@ -85,7 +86,7 @@ class UserManager:
     
     # function to search for an existing InCollege user
     # returns: user = User() object for user being searched for; False if user does not exist or error
-    def userSearch(self):
+    def userSearch(self,user):
         print("     Search-A-User Page      \n")
         # get user input
         try:
@@ -112,7 +113,8 @@ class UserManager:
                         try:
                             newOption = int(input("Choice: "))
                             if newOption == 1:
-                                return False
+                                FriendRequest(self.user.getUsername(),user.getUsername())
+                                return True
                             elif newOption == 2:
                                 return False
                         except ValueError:
