@@ -12,15 +12,12 @@ class UserManager:
 
     filename1 = "User_Files/users.csv"
     filename2 = "User_Files/userSettings.csv"
+    
     #IO initialize
     userIO = UserIO()
-
-    #IO settings initialize
     userSettingsIO = UserSettingsIO()
 
     userList = userIO.readUsers(filename1)
-
-
     userSettingsIO.readUserSettings(userList, filename2)
     settingsList = list()
 
@@ -62,7 +59,19 @@ class UserManager:
             firstName = str(input("Provide your first name: "))
             lastName = str(input("Provide your last name: "))
 
-            newUser = User(username, password, firstName, lastName)
+            # ADDED: Set membership status when creating an account
+            choice = int(input("""Choose your membership status: 
+                1. Standard (FREE)
+                2. Plus ($9.99/mo)
+                Select: """))
+            if choice == 2:
+                status = "Plus"
+                print("Selected 'Plus' memebership.\n")
+            else:
+                status = "Standard"
+                print("Selected 'Standard' memebership.\n")
+
+            newUser = User(username, password, firstName, lastName, status)
             try:
                 self.userList.append(newUser)
                 self.userSettingsIO.writeUserSettings(newUser.getSettings(), self.filename2)
@@ -70,7 +79,7 @@ class UserManager:
 
                 print("Account successfully created. Returning home...\n")
                 return newUser
-            except:
+            except RuntimeError:
                 print("(⚠️ Exception occurred when creating account...)")
 
     
@@ -81,8 +90,8 @@ class UserManager:
         # get user input
         try:
             print("     Select the search option      \n")
-            print("     1. Search by Last Name        \n")
-            print("     2. Search by University       \n")
+            print("     1. Search by Last Name        ")
+            print("     2. Search by University       ")
             print("     3. Search by Major            \n")
             newOption = int(input("Choice: "))
 

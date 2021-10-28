@@ -32,6 +32,9 @@ class JobManager:
             job = Job(title, desc, employer, location, salary, created_by)
             JobManager.jobList.append(job)
             return job
+
+
+
     def deleteJobListing(self, user):
 
         if len(JobManager.jobList) <= 0:
@@ -41,6 +44,8 @@ class JobManager:
             JobIO.deleteJobs(Title, "Job_Files/jobs.csv")
 
             return True
+
+
 
     def applyForJob(self, user):
         chooseJob = int(input("Please choose the job you would like to apply by index\ne.g. for Job 1 choose 1\n(Type 555, if you would like to see available jobs)\n"))
@@ -86,6 +91,8 @@ class JobManager:
             else:
                 print("We don't have a job with that index.\nPlease try again...\n")
 
+
+
     # option to retrieve available jobs
     def seeJobs(self, user):
         print("Number of avaliable jobs: ", len(self.jobList))
@@ -98,6 +105,8 @@ class JobManager:
             print("Salary: ", job.getSalary())
             print("Created by: ", job.getCreatedBy())
 
+
+
     # option to retrieve applied jobs for specific user
     def seeAppliedJobs(self, user):
         print("Number of applied jobs: ", len(self.jobApplicationList))
@@ -105,6 +114,8 @@ class JobManager:
             if(job.getApplicant() == user.getUsername()):
                 print("Job ", (self.jobApplicationList.index(job) + 1), '\n')
                 print("Title: ", job.getTitle())
+
+
 
     # close function to write Job data to file before program terminates
     # NO RETURN VALUE

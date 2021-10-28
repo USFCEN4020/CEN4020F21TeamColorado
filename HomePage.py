@@ -41,7 +41,7 @@ while True:
             5. Learn a new skill
             6. View profile
 
-            9. Useful Links
+            7. Useful Links
             8. InCollege Important Links
 
             0. Exit

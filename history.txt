@@ -1,0 +1,20 @@
+* 7e387c1 (HEAD -> test, origin/test, origin/HEAD) "Delete job by title" added to JobsIO and JobManager
+* 71cd345 "Added Option to return"
+* b0d457f Revert "Add files via upload"
+* e924e6b Add files via upload
+* d3f7d14 Job application, logging for issues with Friend requests, account creation and Login
+* c141691 Search friend option added to "UserManager.py"
+* dd3631a Added "FriendRequest.py","FriendRequestIO.py","friendRequests.csv"; Modified "HomePage.py" to prompt for friend requests.
+* 70762fb Add files via upload
+* 1c85bfd Friends Class Added. "User.py" and "ProfileMenu.py" modified to allow friends
+* 89e4568 Delete UserManager.py
+* f015164 Add files via upload
+* 0d9045e Integration of Profiles through "ProfileMenu.py"
+* bdb8304 Implemented "UserProfiles.py", updated "Users.py"
+* ed34f77 Forgot to add UsefulLinks to HomePage
+* e83389c Massive OOP overhaul and added "UsefulLinks.py"
+* a485ed5 (origin/main) Minor changes and added "ImportantLinks.py"
+* 02f966e Update README.md
+* 4461904 Update README.md
+* 3fffc62 Delete .DS_Store
+* ab7a070 intial OOP restructure for test

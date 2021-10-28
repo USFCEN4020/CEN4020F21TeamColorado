@@ -5,14 +5,17 @@ from User_Files.UserFriends import Friends
 # class for creating a User object
 class User:
 
-    def __init__(self, username, password, firstName, lastName):
+    def __init__(self, username, password, firstName, lastName, status):
         self.username = username
         self.password = password
         self.firstName = firstName
         self.lastName = lastName
+        self.status = status
         self.settings = Settings(username)
         self.profile = Profile(username)
         self.friends = Friends(username)
+
+    inbox = []      # List to hold inbox messages
 
     def setUsername(self, username):
         self.username = username
@@ -48,3 +51,8 @@ class User:
         self.friends = friends
     def getFriends(self):
         return self.friends
+
+    def setStatus(self, status):
+        self.status = status
+    def getStatus(self):
+        return self.status
