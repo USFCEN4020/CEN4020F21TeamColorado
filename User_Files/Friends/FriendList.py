@@ -37,19 +37,19 @@ class FriendList:
     def setFriendList(self, fUsername):
         if(self.friend1 == ''):
             self.friend1 = fUsername
-        elif (self.friend2 != ''):
+        elif (self.friend2 == ''):
             self.friend2 = fUsername
-        elif (self.friend3 != ''):
+        elif (self.friend3 == ''):
             self.friend3 = fUsername
-        elif (self.friend4 != ''):
+        elif (self.friend4 == ''):
             self.friend4 = fUsername
-        elif (self.friend5 != ''):
+        elif (self.friend5 == ''):
             self.friend5 = fUsername
-        elif (self.friend6 != ''):
+        elif (self.friend6 == ''):
             self.friend6 = fUsername
-        elif (self.friend7 != ''):
+        elif (self.friend7 == ''):
             self.friend7 = fUsername
-        elif (self.friend8 != ''):
+        elif (self.friend8 == ''):
             self.friend8 = fUsername
-        elif (self.friend9 != ''):
+        elif (self.friend9 == ''):
             self.friend9 = fUsername
