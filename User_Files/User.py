@@ -15,7 +15,7 @@ class User:
         self.profile = Profile(username)
         self.friends = FriendList(username)
 
-    inbox = []      # List to hold inbox messages
+    inbox = list()      # List to hold inbox messages
 
     def setUsername(self, username):
         self.username = username

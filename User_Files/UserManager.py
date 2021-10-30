@@ -218,24 +218,6 @@ class UserManager:
         print("Returning to home page...")
         return False
 
-    
-    # function to create a message
-    # input: loggedIn: User() object containing the current logged-in user
-    # input: recipient: User() object containing the user who is recieving the message
-    # returns: message: Message() object that was created; False: the users are not friends and the current user is not a Plus member
-    def createMessage(self, loggedIn, recipient):
-        # check that the two users are friends and/or the current user is a Plus member
-        if (recipient.getUsername() not in loggedIn.getFriends().getFriendList()) and (loggedIn.getStatus() != "Plus"):
-            print("I'm sorry, you are not friends with that person.\n")
-            return False
-        
-        title = str(input("Enter the title of your message:\n"))
-        body = str(input("Write your message below:\n"))
-        message = Message(loggedIn.getUsername(), recipient.getUsername(), title, body)
-
-        return message
-    # TODO: Send created message to a user
-
 
     # close function to write User data to file before program terminates
     # NO RETURN VALUE

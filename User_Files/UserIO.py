@@ -12,7 +12,7 @@ class UserIO:
         try:
             data = pd.read_csv(filename)
             for index, row in data.iterrows():
-                user = User(row["Username"], row["Password"], row["First_Name"], row["Last_Name"], row["Status"])
+                user = User(row["Username"], row["Password"], row["First_Name"], row["Last_Name"], row["Status"], row["inbox"])
                 userList.append(user)
             return userList
         except OSError:
@@ -28,19 +28,22 @@ class UserIO:
         firstNames = list()
         lastNames = list()
         memberships = list()
+        inboxes = list()
         for user in userList:
             usernames.append(user.getUsername())
             passwords.append(user.getPassword())
             firstNames.append(user.getFirstName())
             lastNames.append(user.getLastName())
             memberships.append(user.getStatus())
+            inboxes.append(user.inbox)
 
         dictionary = {
             'Username': usernames,
             'Password': passwords,
             'First_Name': firstNames,
             'Last_Name': lastNames,
-            'Status': memberships 
+            'Status': memberships,
+            'inbox': inboxes
             }
         
         try:
