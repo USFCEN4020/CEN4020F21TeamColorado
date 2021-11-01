@@ -1,9 +1,13 @@
 import pytest
 from testFileCore import set_keyboard_input, get_display_output, makeMultiInput
 
-# Tested Managers
+# Tested User Managers Components
 from User_Files.UserManager import UserManager
 from User_Files.User import User
+
+# Tested Message Managers Components
+from User_Files.Messages.MessageHandler import MessageHandler
+from User_Files.Messages.Message import Message
 
 # User Manager Tests
 def testUserLogIn():
@@ -48,3 +52,22 @@ def testCreateAccount():
                       "Provide your last name: ",
                       "Account successfully created. Returning home...\n"
                       ]
+
+# Message Handler Tests
+def testCreateMessage():
+    set_keyboard_input(["This is a test title", "this is a test message"])
+    testUser1 = User('Tester1','Password#123','James','Smith', 'Plus')
+    testUser2 = User('Teste2', 'Password#123', 'John', 'Doe', 'Plus')
+    testMessage = MessageHandler.createMessage(testUser1, testUser2)
+    output = get_display_output()
+    assert output == ["Enter the title of your message:\n", "Write your message below:\n"]
+    assert testMessage != False
+
+def testSendMessage():
+    testmessage = Message('Tester1', 'Tester2', 'Test title', 'Test message')
+    testUser1 = User('Tester1', 'Password#123', 'James', 'Smith', 'Plus')
+    testUser2 = User('Tester2', 'Password#123', 'John', 'Doe', 'Plus')
+    testUserList = list()
+    testUserList.append(testUser1)
+    testUserList.append(testUser2)
+    assert MessageHandler.sendMessage(testmessage,testUserList) != False
