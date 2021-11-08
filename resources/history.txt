@@ -1,0 +1,84 @@
+* commit 283c8478f0642e22b5d7ce048c3ff4fcf58ec8f8 (HEAD -> test, origin/test, origin/HEAD)
+| Author: Sage Keesler <keeslers@usf.edu>
+| Date:   Mon Nov 8 13:23:23 2021 -0500
+| 
+|     v1.5.1
+|     -Added menu options to FriendsPage
+|       -Added searchMenu() for searching for friends
+|         -Added findUsersByName() to UserManager
+|         -Added findUsersByUni() to UserManager
+|         -Added findUsersByMajor() to UserManager
+|       -Added addFriend() for adding friends
+|       -Added manageFriends() for deleting friends and viewing profiles
+|       -Added manageRequests() for accepting/declining friend requests
+|     -Added displayProfile() to UserManager for displaying users' profiles
+|     -Fixed a function call bug in FriendHandler/sendRequest()
+|     -Fixed some text formatting in FriendHandler functions
+|     -Modified FriendHandler/displayFriends() to address TypeValue errors
+|     -Added FriendHandler/displayRequests() to see recieved/outgoing requests
+|     -Modified FriendHandler/friendNotif() to only display recieved requests
+|     -Added FriendHandler/checkForProfile() to see if user's profile was made
+|     -Added IOHelper for containing IO Helper functions
+|       -Added IOHelper/toBool() to read boolean strings as booleans
+|       -Modified UserProfilesIO to utilize IOHelper/toBool() on file read
+| 
+* commit 945f7439ef5fd875c17de9bc63193c29294c77a1
+| Author: Sage Keesler <keeslers@usf.edu>
+| Date:   Wed Nov 3 18:01:48 2021 -0400
+| 
+|     v1.5.0 "The Friends Update"
+|     -Added FriendsList() object to store friends and requests
+|     -Added FriendRequest() object to easily send request data
+|     -Added FriendsListIO() object to read/write friend data
+|     -Added friendLists.csv to store friend data
+|     -Added FriendHandler class to deal with friend-related operations
+|         -createRequest() creates a FriendRequest() object
+|         -sendRequest() adds the request to both users' request lists
+|         -acceptRequest() moves the request to the friends list
+|         -declineRequest() deletes the request with no other changes
+|         -removeFriend() deletes a friends from both users' friends list
+|         -displayFriends() returns a string displaying all friends in a list
+|         -friendNotif() returns string informing a user of incoming requests
+|     -UserManager updated to support reading/writing friends
+|     -User() updated to create and store a FriendsList() object
+|     -FriendsPage added to support menus for friend operations *IN PROGRESS*
+|     -HomePage updated to support FriendsPage
+| 
+* commit 306cc0e1b53bcf1574334d2aafc2e173a14acf53 (origin/main)
+| Author: Sage Keesler <keeslers@usf.edu>
+| Date:   Tue Nov 2 19:26:35 2021 -0400
+| 
+|     v1.4.1
+|     -added addExperience() function to ProfilePage.py
+|     -added removeExperience() function to ProfilePage.py
+|     -added editExperience() function to ProfilePage.py
+|     -added option to modify experience in profileMenu(), ProfilePage.py
+|     -Reset all user data to allow Profile support
+|     -Updated Profile list fields to default to 'False' instead of empty list
+|     -Updated JobManager to explicitly name file that was written to
+|     -Fixed readUserProfiles() to correctly read experience as list of lists
+| 
+* commit 652e0071be3c32df6af467895b7f24beb8d0a7a7
+| Author: Sage Keesler <keeslers@usf.edu>
+| Date:   Sat Oct 30 21:54:28 2021 -0400
+| 
+|     v1.4.0 "The Profiles Update"
+|     -Updated directory for better organization
+|     -Fixed imports with updated directory
+|     -Added Profile directory within User_Files
+|     -Added Profile() object (in UserProfiles.py)
+|     -Added UserProfilesIO.py for profile reader/writer functions
+|     -Updated User() object to store a Profile() object
+|     -Updated UserManager.py to implement UserProfilesIO class
+|     -Updated close() function in UserManager to write profiles
+|     -Slightly modified layout of HomePage main menu
+|     -Added ProfilePage.py for profile menus
+|     -Created profileMenu in ProfilePage to deal with profile menu operations
+|     -Moved log-out menu selection to profileMenu()
+| 
+* commit 575ecc0028f629028c90e477fe31695f71e2e321
+  Author: Sage Keesler <keeslers@usf.edu>
+  Date:   Fri Oct 29 14:57:21 2021 -0400
+  
+      Initial Build
+      The first complete build which I created for Team Colorado.
