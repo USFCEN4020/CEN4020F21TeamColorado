@@ -184,6 +184,62 @@ class UserManager:
     # function to log the user in
     # returns: user = User() object from userList that was logged into; False if the function exits in error
     def logIn(self):
+        #training
+        train = str(input("Would you like to try Training? (Y/N): "))
+        if train == 'Y' or train == 'y':
+            while true:
+                try:
+                    print("     Select the training option        \n")
+                    print("     1. Training and Education         \n")
+                    print("     2. IT Help Desk                   \n")
+                    print("     3. Business Analytics and Strategy\n")
+                    print("     4. Security                       \n")
+                    trainChoice = int(input("Choice: "))
+
+                    if trainChoice == 1:
+                        while true:
+                            print("     Select the training option        \n")
+                            print("     1. Business                       \n")
+                            print("     2. Communication                  \n")
+                            print("     3. Marketing                      \n")
+                            print("     4. Technology                     \n")
+                            trainChoice2 = int(input("Choice: "))
+                            if trainChoice2 == 1 or trainChoice2 == 2 or trainChoice2 == 3 or trainChoice2 == 4:
+                                print("This page is under construction.\n")
+                                break
+                            else:
+                                tryAgain = str(input("You entered an invalid choice. Would you like to try again? (Y/N):" ))
+                                if tryAgain == 'Y' or tryAgain == 'y':
+                                    continue
+                                else:
+                                    break
+                        break
+                    elif trainChoice == 2 or trainChoice == 4:
+                        print("Coming soon!\n")
+                        break
+                    elif trainChoice == 3:
+                        while true:
+                            print("     Trending Courses                  \n")
+                            print("     1. How to use In College Training \n")
+                            print("     2. Train the Trainer              \n")
+                            print("     3. Gamification of Learning       \n")
+                            print("     Not seeing what you’re looking for? Sign in to see all 7,609 results.\n")
+                            trainChoice3 = int(input("Choice: "))
+                            if trainChoice3 == 1 or trainChoice3 == 2 or trainChoice3 == 3:
+                                break
+                            else:
+                                tryAgain1 = str(input("You entered an invalid choice. Would you like to try again? (Y/N):" ))
+                                if tryAgain1 == 'Y' or tryAgain1 == 'y':
+                                    continue
+                                else:
+                                    break
+                    else:
+                        tryAgain2 = str(input("You entered an invalid choice. Would you like to try again? (Y/N):"))
+                        if tryAgain2 == 'Y' or tryAgain2 == 'y':
+                            continue
+                        else:
+                            break
+        #lOG IN
         print("     Log-In Page      \n")
         while True:
             try:
